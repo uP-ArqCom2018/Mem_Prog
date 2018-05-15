@@ -15,5 +15,5 @@ Aqui se describe como funciona el modulo.
 Al escribir el nombre de algun puerto, senal o variable, deben seguirse
 los siguientes lineamientos:
 
-* Entradas: <NOMBRE EN MAYUSCULA>_i
-* Salidas: <NOMBRE EN MAYUSCULA>_o
+* Entradas: < NOMBRE EN MAYUSCULA >_i
+* Salidas: < NOMBRE EN MAYUSCULA >_o
