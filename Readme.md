@@ -1,19 +1,21 @@
-# Repositorio para la Memoria de Programa
+# Memoria de Programa del [Microprocesador]
+##### Autores: Suarez Facundo - Parisi Pablo
+### Descripción
+La Memoria de Programa es la Unidad encargada de indicar la instrucción 
+correspondiente que se va a ejecutar.
+* Entradas:
+  - ADDRESS_i [10...0] : Indica la dirección donde se ubica la instrucción que se ejecuta.
+  - CLK_i : Señal de sincronismo.
+* Salidas:
+    - DATA_o [31...0] : Instrucción que ejecuta el procesador.
 
-Aqui se encuentra el repositorio del bloque de Memoria de Programa.
+La unidad *Program Counter* brindará a este módulo la dirección correspondiente a la instrucción que se ejecutará. Ésta misma se distribuye a lo largo del Datapath del procesador.
 
-Carpetas existentes:
+#### Dependencias: 
 
-* **doc** incluye la documentacion.
-* **src** incluye las fuentes del proyecto.
-* **testbench** incluye los archivos de simulacion.
+#### Revisión:
 
-## Descripcion de funcionamiento
-Aqui se describe como funciona el modulo.
+#### Comentarios Adicionales:
 
-### Lineamientos generales para nombres:
-Al escribir el nombre de algun puerto, senal o variable, deben seguirse
-los siguientes lineamientos:
-
-* Entradas: < NOMBRE EN MAYUSCULA >_i
-* Salidas: < NOMBRE EN MAYUSCULA >_o
+[Microprocesador]: <https://github.com/uP-ArqCom2018>
+[Suarez Facundo]: <https://github.com/ffsuarez/>
