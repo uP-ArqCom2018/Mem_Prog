@@ -17,7 +17,7 @@ entity Memoria_Programa is
 		CLK_i:	in  std_logic;
 		RESET_i:	in	 std_logic;
 		ADDR_i:	in	 std_logic_vector(ancho_address-1 downto 0);
-		INSTR_o:	out std_logic_vector(31 downto 0)
+		DATA_o:	out std_logic_vector(31 downto 0)
 	);
 end Memoria_Programa;
 
@@ -54,11 +54,11 @@ architecture Mem_Prog of Memoria_Programa is
 	process(CLK_i,RESET_i)
 		begin
 			if RESET_i='1' then
-				INSTR_o<=(others=>'0');
+				DATA_o<=(others=>'0');
 			elsif(CLK_i'event and CLK_i='1') then
 				--INSTR_o<=(rom((to_integer(unsigned(ADDR_i)&(unsigned(ADDR_i)+1)&(unsigned(ADDR_i)+2)&(unsigned(ADDR_i)+3)))));
 				--INSTR_o<=(rom(ADDR_i));
-				INSTR_o<=rom((to_integer(unsigned(ADDR_i)))) & rom((to_integer(unsigned(ADDR_i)+1))) & rom((to_integer(unsigned(ADDR_i)+2))) & rom((to_integer(unsigned(ADDR_i)+3)));-- & rom((to_integer(unsigned(ADDR_i)+3)));
+				DATA_o<=rom((to_integer(unsigned(ADDR_i)))) & rom((to_integer(unsigned(ADDR_i)+1))) & rom((to_integer(unsigned(ADDR_i)+2))) & rom((to_integer(unsigned(ADDR_i)+3)));-- & rom((to_integer(unsigned(ADDR_i)+3)));
 			end if;
 	end process;
 end Mem_Prog;
