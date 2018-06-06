@@ -1,7 +1,7 @@
-# Memoria de Programa del [Microprocesador]
+﻿# Memoria de Programa del [Microprocesador]
 ##### Autores: Suarez Facundo - Parisi Pablo
 ### Descripción
-El objetivo de dicha unidad es proporcionar la instrucción que debe ejecutarse a través de una Memoria que contiene el programa almacenado sobre un arreglo de 2ˆ12 palabras de 1 byte. Al realizar un cambio de la instrucción se proporcionan los valores de las 4 palabras de 1 byte, a través de la concatenación, para determinar la instrucción de 32 palabras que será repartida sobre el Datapath.
+El objetivo de dicha unidad es proporcionar la instrucción que debe ejecutarse a través de una Memoria que contiene el programa almacenado sobre un arreglo de 2ˆ10 palabras de 1 byte. Al realizar un cambio de la instrucción se proporcionan los valores de las 4 palabras de 1 byte, a través de la concatenación, para determinar la instrucción de 32 palabras que será repartida sobre el Datapath.
 * Entradas:
   - ADDRESS_i [10...0] : Indica la dirección donde se determina la dirección de la próxima instrucción que se ejecuta.
   - CLK_i : Señal de sincronismo.
