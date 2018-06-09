@@ -1,43 +1,39 @@
 --------------------------------------------------------------------------------
--- Company: 
--- Engineer:
+-- Alumnos: Suarez Facundo-Parisi Pablo
 --
--- Create Date:   16:04:51 06/04/2018
--- Design Name:   
--- Module Name:   D:/Arq_computadoras/MEM/MEME/MEME_TB.vhd
--- Project Name:  MEME
--- Target Device:  
--- Tool versions:  
--- Description:   
+-- Fecha:   16:04:51 06/04/2018
+-- Nombre del diseño: Testbench de memoria de programa   
+
+-- Nombre del proyecto:  Mem_Prog_tb
+-- Dispositivo: --  
+-- Version usada de herramienta:  
+-- Descripcion: Simulacion del modulo de memoria de programa del microprocesador
+--				implementado en la materia Arquitectura de Computadoras 
+--				  
 -- 
--- VHDL Test Bench Created by ISE for module: Memoria_Programa
+
 -- 
--- Dependencies:
+-- Dependencias:
 -- 
 -- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
+-- Revision 0.01 - Creacion Testbench
+-- Comentarios adicionales:
 --
--- Notes: 
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation 
--- simulation model.
+-- Notas: 
+
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
+
 --USE ieee.numeric_std.ALL;
  
-ENTITY MEME_TB IS
-END MEME_TB;
+ENTITY Mem_Prog_tb IS
+END Mem_Prog_tb;
  
-ARCHITECTURE behavior OF MEME_TB IS 
+ARCHITECTURE behavior OF Mem_Prog_tb IS 
  
-    -- Component Declaration for the Unit Under Test (UUT)
+    -- Declaracion del componente unidad bajo prueba (UUT)
  
     COMPONENT Memoria_Programa
     PORT(
@@ -49,20 +45,20 @@ ARCHITECTURE behavior OF MEME_TB IS
     END COMPONENT;
     
 
-   --Inputs
+   --Entradas
    signal CLK_i : std_logic := '0';
    signal RESET_i : std_logic := '0';
    signal ADDR_i : std_logic_vector(9 downto 0) := (others => '0');
 
- 	--Outputs
+ 	--Salidas
    signal INSTR_o : std_logic_vector(31 downto 0);
 
-   -- Clock period definitions
+   -- Definicion de periodo de clock
    constant CLK_i_period : time := 10 ns;
  
 BEGIN
  
-	-- Instantiate the Unit Under Test (UUT)
+	-- Instanciacion de UUT
    uut: Memoria_Programa PORT MAP (
           CLK_i => CLK_i,
           RESET_i => RESET_i,
@@ -70,7 +66,7 @@ BEGIN
           INSTR_o => INSTR_o
         );
 
-   -- Clock process definitions
+   -- Definicion de proceso de clock
    CLK_i_process :process
    begin
 		CLK_i <= '0';
@@ -80,19 +76,14 @@ BEGIN
    end process;
  
 
-   -- Stimulus process
-   stim_proc: process
-   begin		
-      -- hold reset state for 100 ns.
-      RESET_i<='1';
-		wait for 10 ns;	
-
-      --wait for CLK_i_period*10;
-
-      -- insert stimulus here 
-		ADDR_i<="0000000000";
-		RESET_i<='0';
-      wait;
-   end process;
+   -- Proceso de estimulo
+	stim_proc: process
+		begin		
+			RESET_i<='1';
+			wait for 10 ns;	
+			ADDR_i<="0000000000";
+			RESET_i<='0';
+		wait;
+	end process;
 
 END;
