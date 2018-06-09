@@ -37,8 +37,6 @@ ARCHITECTURE behavior OF Mem_Prog_tb IS
  
     COMPONENT Memoria_Programa
     PORT(
-         CLK_i : IN  std_logic;
-         RESET_i : IN  std_logic;
          ADDR_i : IN  std_logic_vector(9 downto 0);
          INSTR_o : OUT  std_logic_vector(31 downto 0)
         );
@@ -46,15 +44,13 @@ ARCHITECTURE behavior OF Mem_Prog_tb IS
     
 
    --Entradas
-   signal CLK_i : std_logic := '0';
-   signal RESET_i : std_logic := '0';
    signal ADDR_i : std_logic_vector(9 downto 0) := (others => '0');
 
  	--Salidas
    signal INSTR_o : std_logic_vector(31 downto 0);
 
    -- Definicion de periodo de clock
-   constant CLK_i_period : time := 10 ns;
+
  
 BEGIN
  
@@ -66,15 +62,6 @@ BEGIN
           INSTR_o => INSTR_o
         );
 
-   -- Definicion de proceso de clock
-   CLK_i_process :process
-   begin
-		CLK_i <= '0';
-		wait for CLK_i_period/2;
-		CLK_i <= '1';
-		wait for CLK_i_period/2;
-   end process;
- 
 
    -- Proceso de estimulo
 	stim_proc: process

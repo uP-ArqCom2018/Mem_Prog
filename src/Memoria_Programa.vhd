@@ -20,8 +20,6 @@
 --
 --
 --Entradas:			
---					* CLK_i: Señal de sincronismo.
---					* RESET_i: Señal de reinicializacion.
 --					* ADDR_i: Indica la dirección donde se determina la dirección de la próxima instrucción que se ejecuta.
 --					* DATA_o: Instrucción que ejecuta el procesador.
 --
@@ -59,8 +57,6 @@ entity Memoria_Programa is
 		ancho_address:	integer := 10
 	);
 	port(
-		CLK_i:	in  std_logic;
-		RESET_i:	in	 std_logic;
 		ADDR_i:	in	 std_logic_vector(ancho_address-1 downto 0);
 		DATA_o:	out std_logic_vector(ancho_inst-1 downto 0)
 	);
@@ -98,16 +94,6 @@ architecture Mem_Prog of Memoria_Programa is
 	--Se comienza la arquitectura
 	begin
 	
-	--Se realiza el proceso de la Rom
-	
-	process(CLK_i,RESET_i)
-		begin
+	DATA_o<=rom((to_integer(unsigned(ADDR_i)))) & rom((to_integer(unsigned(ADDR_i)+1))) & rom((to_integer(unsigned(ADDR_i)+2))) & rom((to_integer(unsigned(ADDR_i)+3)));			
 
-			if RESET_i='1' then
-				DATA_o<=(others=>'0');
-			elsif(CLK_i'event and CLK_i='1') then
-				DATA_o<=rom((to_integer(unsigned(ADDR_i)))) & rom((to_integer(unsigned(ADDR_i)+1))) & rom((to_integer(unsigned(ADDR_i)+2))) & rom((to_integer(unsigned(ADDR_i)+3)));-- & rom((to_integer(unsigned(ADDR_i)+3)));
-			end if;
-			
-	end process;
 end Mem_Prog;
