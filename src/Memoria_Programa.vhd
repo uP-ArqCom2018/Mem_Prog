@@ -21,6 +21,8 @@
 --
 --Entradas:			
 --					* ADDR_i: Indica la dirección donde se determina la dirección de la próxima instrucción que se ejecuta.
+--
+--Salidas:
 --					* DATA_o: Instrucción que ejecuta el procesador.
 --
 -- Dependencias: Librerias ieee, ieee.std_logic_1164, ieee.numeric_std
@@ -28,11 +30,17 @@
 -- 
 -- Revision:
 -- Revision 0.01 - Creacion Codigo, inclusion de primer simulacion con testbench.
+--
 -- Comentarios adicionales:
 --		Descripción de Función "Ini_rom_file":
 --				Puede decirse que ejecutan tres pasos: En primer lugar se lee una linea de texto desde un archivo
 --				a continuación se efectúa la lectura de la linea,en forma de un vector de bits.
 --				Por último, se lo convierte en un dato del tipo STD_LOGIC_VECTOR.
+
+--		En primer lugar se planteo la posibilidad de implementar tanto la Memoria de Programa como asi también el resto
+--		de los componentes del Microprocesador, con una señal de sincronismo CLK_i
+--		En el repositorio del Microprocesador se deja un branch con la version que incluye CLK_i.
+--
 -- Notas: 
 --		Es posible utilizar el paquete *IEEE.std_logic_textio* en lugar de todas las demás.
 --		Dicho planteamiento se deja documentado para una posible futura mejora de la descripción del hardware.
