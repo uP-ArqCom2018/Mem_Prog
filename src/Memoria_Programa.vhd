@@ -9,7 +9,7 @@
 -- Herramienta utilizada: Quartus Prime Lite Edition,ISE Xilinx , GHDL
 -- Version usada de herramienta:  
 -- Descripcion: El objetivo de dicha unidad es proporcionar la instrucción que debe ejecutarse a través de una Memoria
---		que contiene el programa almacenado sobre un arreglo de 2ˆ10 palabras de 1 byte. Al realizar un cambio de la instrucción
+--		que contiene el programa almacenado sobre un arreglo de 2**10 palabras de 1 byte. Al realizar un cambio de la instrucción
 --		se proporcionan los valores de las 4 palabras de 1 byte, a través de la concatenación, para determinar la instrucción de 
 --		32 palabras que será repartida sobre el Datapath.
 --				  

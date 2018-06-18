@@ -1,11 +1,12 @@
 all:
 	rm -rf work
 	mkdir work
+	ghdl --clean
 	ghdl -a --ieee=synopsys --work=work --workdir=work src/Memoria_Programa.vhd
 	ghdl -a --ieee=synopsys --work=work --workdir=work testbench/MEME_TB.vhd
-	ghdl -e --ieee=synopsys --work=work --workdir=work MEME_TB
-	ghdl -r --ieee=synopsys --work=work --workdir=work MEME_TB --vcd=MEME_TB.vcd --stop-time=700us
-	gtkwave MEME_TB.vcd
+	ghdl -e --ieee=synopsys --work=work --workdir=work Mem_Prog_tb
+	ghdl -r --ieee=synopsys --work=work --workdir=work Mem_Prog_tb --vcd=Mem_Prog_tb.vcd --stop-time=700us
+	gtkwave Mem_Prog_tb.vcd
 sim:
 	gtkwave *.vcd
 	

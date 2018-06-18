@@ -26,7 +26,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
 
---USE ieee.numeric_std.ALL;
+USE ieee.numeric_std.ALL;
  
 ENTITY Mem_Prog_tb IS
 END Mem_Prog_tb;
@@ -40,7 +40,7 @@ ARCHITECTURE behavior OF Mem_Prog_tb IS
          CLK_i : IN  std_logic;
          RESET_i : IN  std_logic;
          ADDR_i : IN  std_logic_vector(9 downto 0);
-         INSTR_o : OUT  std_logic_vector(31 downto 0)
+         DATA_o : OUT  std_logic_vector(7 downto 0)
         );
     END COMPONENT;
     
@@ -51,7 +51,7 @@ ARCHITECTURE behavior OF Mem_Prog_tb IS
    signal ADDR_i : std_logic_vector(9 downto 0) := (others => '0');
 
  	--Salidas
-   signal INSTR_o : std_logic_vector(31 downto 0);
+   signal DATA_o : std_logic_vector(7 downto 0);
 
    -- Definicion de periodo de clock
    constant CLK_i_period : time := 10 ns;
@@ -63,7 +63,7 @@ BEGIN
           CLK_i => CLK_i,
           RESET_i => RESET_i,
           ADDR_i => ADDR_i,
-          INSTR_o => INSTR_o
+          DATA_o => DATA_o
         );
 
    -- Definicion de proceso de clock
@@ -83,6 +83,11 @@ BEGIN
 			wait for 10 ns;	
 			ADDR_i<="0000000000";
 			RESET_i<='0';
+			for sel_ADDR_i in 0 to 2 ** ADDR_i'length - 1 loop
+				ADDR_i <= std_logic_vector(to_unsigned(sel_ADDR_i, ADDR_i'length));
+				wait for 5 ns;
+			end loop;
+
 		wait;
 	end process;
 
