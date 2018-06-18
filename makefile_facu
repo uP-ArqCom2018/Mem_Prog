@@ -5,7 +5,7 @@ all:
 	ghdl -a --ieee=synopsys --work=work --workdir=work src/Memoria_Programa.vhd
 	ghdl -a --ieee=synopsys --work=work --workdir=work testbench/MEME_TB.vhd
 	ghdl -e --ieee=synopsys --work=work --workdir=work Mem_Prog_tb
-	ghdl -r --ieee=synopsys --work=work --workdir=work Mem_Prog_tb --vcd=Mem_Prog_tb.vcd --stop-time=700us
+	ghdl -r --ieee=synopsys --work=work --workdir=work Mem_Prog_tb --vcd=Mem_Prog_tb.vcd --stop-time=300us
 	gtkwave Mem_Prog_tb.vcd
 sim:
 	gtkwave *.vcd

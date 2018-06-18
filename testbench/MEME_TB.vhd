@@ -40,7 +40,7 @@ ARCHITECTURE behavior OF Mem_Prog_tb IS
          CLK_i : IN  std_logic;
          RESET_i : IN  std_logic;
          ADDR_i : IN  std_logic_vector(9 downto 0);
-         DATA_o : OUT  std_logic_vector(7 downto 0)
+         DATA_o : OUT  std_logic_vector(31 downto 0)
         );
     END COMPONENT;
     
@@ -51,7 +51,7 @@ ARCHITECTURE behavior OF Mem_Prog_tb IS
    signal ADDR_i : std_logic_vector(9 downto 0) := (others => '0');
 
  	--Salidas
-   signal DATA_o : std_logic_vector(7 downto 0);
+   signal DATA_o : std_logic_vector(31 downto 0);
 
    -- Definicion de periodo de clock
    constant CLK_i_period : time := 10 ns;
@@ -82,6 +82,7 @@ BEGIN
 			RESET_i<='1';
 			wait for 10 ns;	
 			ADDR_i<="0000000000";
+			wait for 20 ns;
 			RESET_i<='0';
 			for sel_ADDR_i in 0 to 2 ** ADDR_i'length - 1 loop
 				ADDR_i <= std_logic_vector(to_unsigned(sel_ADDR_i, ADDR_i'length));

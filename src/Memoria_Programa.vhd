@@ -62,7 +62,7 @@ entity Memoria_Programa is
 		CLK_i:	in  std_logic;
 		RESET_i:	in	 std_logic;
 		ADDR_i:	in	 std_logic_vector(ancho_address-1 downto 0);
-		DATA_o:	out std_logic_vector(ancho_inst-1 downto 0)
+		DATA_o:	out std_logic_vector((4*ancho_inst)-1 downto 0)
 	);
 end Memoria_Programa;
 
