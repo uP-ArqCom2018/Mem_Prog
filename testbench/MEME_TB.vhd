@@ -16,7 +16,7 @@
 -- Dependencias:
 -- 
 -- Revision:
--- Revision 0.01 - Creacion Testbench
+-- Revision 1.00 - Testbench para todos los valores
 -- Comentarios adicionales:
 --
 -- Notas: 

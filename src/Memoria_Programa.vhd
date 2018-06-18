@@ -23,13 +23,14 @@
 --					* CLK_i: Señal de sincronismo.
 --					* RESET_i: Señal de reinicializacion.
 --					* ADDR_i: Indica la dirección donde se determina la dirección de la próxima instrucción que se ejecuta.
+--Salidas:					
 --					* DATA_o: Instrucción que ejecuta el procesador.
 --
 -- Dependencias: Librerias ieee, ieee.std_logic_1164, ieee.numeric_std
 --				ieee.math_real, ieee.std_logic_misc, std.textio
 -- 
 -- Revision:
--- Revision 0.01 - Creacion Codigo, inclusion de primer simulacion con testbench.
+-- Revision 1.00 - Creacion Codigo, simulacion con testbench.
 -- Comentarios adicionales:
 --		Descripción de Función "Ini_rom_file":
 --				Puede decirse que ejecutan tres pasos: En primer lugar se lee una linea de texto desde un archivo
