@@ -87,8 +87,8 @@ architecture Mem_Prog of Memoria_Programa is
 	rom(35 downto 0)<=(
 	"00010011",--se agrega una ultima instrucción porque este micro nunca salta
 	"00000010",
-	"01000000",
-	"00000110",
+	"10100000",
+	"00000000",
 	"11100011",
 	"10011010",
 	"01000000",
@@ -119,8 +119,8 @@ architecture Mem_Prog of Memoria_Programa is
 	"00000000",
 	"00010011",
 	"00000010",
-	"01000000",
-	"00000110"
+	"10100000", 
+	"00000000"
 	);
 	--Se realiza el proceso de la Rom
 	
