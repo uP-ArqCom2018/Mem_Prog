@@ -2,16 +2,16 @@
 -- Alumnos: Suarez Facundo-Parisi Pablo
 --
 -- Fecha:   16:04:51 06/04/2018
--- Nombre del diseño: Memoria de Programa   
+-- Nombre del diseï¿½o: Memoria de Programa   
 
 -- Nombre del proyecto:  Memoria_Programa
 -- Dispositivo: --  
 -- Herramienta utilizada: Quartus Prime Lite Edition,ISE Xilinx , GHDL
 -- Version usada de herramienta:  
--- Descripcion: El objetivo de dicha unidad es proporcionar la instrucción que debe ejecutarse a través de una Memoria
---		que contiene el programa almacenado sobre un arreglo de 2**10 palabras de 1 byte. Al realizar un cambio de la instrucción
---		se proporcionan los valores de las 4 palabras de 1 byte, a través de la concatenación, para determinar la instrucción de 
---		32 palabras que será repartida sobre el Datapath.
+-- Descripcion: El objetivo de dicha unidad es proporcionar la instrucciï¿½n que debe ejecutarse a travï¿½s de una Memoria
+--		que contiene el programa almacenado sobre un arreglo de 2**10 palabras de 1 byte. Al realizar un cambio de la instrucciï¿½n
+--		se proporcionan los valores de las 4 palabras de 1 byte, a travï¿½s de la concatenaciï¿½n, para determinar la instrucciï¿½n de 
+--		32 palabras que serï¿½ repartida sobre el Datapath.
 --				  
 -- 
 --Entradas Genericas: 
@@ -20,11 +20,11 @@
 --
 --
 --Entradas:			
---					* CLK_i: Señal de sincronismo.
---					* RESET_i: Señal de reinicializacion.
---					* ADDR_i: Indica la dirección donde se determina la dirección de la próxima instrucción que se ejecuta.
+--					* CLK_i: Seï¿½al de sincronismo.
+--					* RESET_i: Seï¿½al de reinicializacion.
+--					* ADDR_i: Indica la direcciï¿½n donde se determina la direcciï¿½n de la prï¿½xima instrucciï¿½n que se ejecuta.
 --Salidas:					
---					* DATA_o: Instrucción que ejecuta el procesador.
+--					* DATA_o: Instrucciï¿½n que ejecuta el procesador.
 --
 -- Dependencias: Librerias ieee, ieee.std_logic_1164, ieee.numeric_std
 --				ieee.math_real, ieee.std_logic_misc, std.textio
@@ -32,13 +32,13 @@
 -- Revision:
 -- Revision 1.00 - Creacion Codigo, simulacion con testbench.
 -- Comentarios adicionales:
---		Descripción de Función "Ini_rom_file":
+--		Descripciï¿½n de Funciï¿½n "Ini_rom_file":
 --				Puede decirse que ejecutan tres pasos: En primer lugar se lee una linea de texto desde un archivo
---				a continuación se efectúa la lectura de la linea,en forma de un vector de bits.
---				Por último, se lo convierte en un dato del tipo STD_LOGIC_VECTOR.
+--				a continuaciï¿½n se efectï¿½a la lectura de la linea,en forma de un vector de bits.
+--				Por ï¿½ltimo, se lo convierte en un dato del tipo STD_LOGIC_VECTOR.
 -- Notas: 
---		Es posible utilizar el paquete *IEEE.std_logic_textio* en lugar de todas las demás.
---		Dicho planteamiento se deja documentado para una posible futura mejora de la descripción del hardware.
+--		Es posible utilizar el paquete *IEEE.std_logic_textio* en lugar de todas las demï¿½s.
+--		Dicho planteamiento se deja documentado para una posible futura mejora de la descripciï¿½n del hardware.
 --
 --Fuentes utilizadas: 
 -- Enlace web: https://ceworkbench.wordpress.com/2014/05/11/initializing-an-fpga-rom-from-a-text-file/
@@ -70,46 +70,12 @@ end Memoria_Programa;
 --Arquitectura
 architecture Mem_Prog of Memoria_Programa is
 	
-	--Declaración de tipo arreglo de standar logic vector
+	--Declaraciï¿½n de tipo arreglo de standar logic vector
 	
 	type rom_arreglo is array (2**ancho_address-1 downto 0) of std_logic_vector (ancho_inst-1 downto 0);
-	type codigo is array (31 downto 0) of std_logic_vector(7 downto 0);
 	
 	signal rom: rom_arreglo;
-	CONSTANT cod_maq : codigo := (
-	"00000110", 
-	"01000000",
-	"00000010", 
-	"00010011", 
-	"00000000", 
-	"00000000", 
-	"00000000", 
-	"10010011", 
-	"00000000", 
-	"10100000", 
-	"10100100", 
-	"10000011", 
-	"00000000", 
-	"00010000",
-	"10010001", 
-	"00010011", 
-	"00000000", 
-	"00100100", 
-	"10000100", 
-	"10110011", 
-	"00000000", 
-	"10010000", 
-	"10100101", 
-	"00100011", 
-	"00000000", 
-	"00010000", 
-	"10000000", 
-	"10010011", 
-	"11111110", 
-	"01000000", 
-	"11000110", 
-	"11100011",
-	);
+
 
 	
 	--Se crea constante con valor de rom
@@ -118,13 +84,50 @@ architecture Mem_Prog of Memoria_Programa is
 	
 	--Se comienza la arquitectura
 	begin
-	rom(0 to 31)<=cod_maq;
+	rom(35 downto 0)<=(
+	"00010011",--se agrega una ultima instrucciÃ³n porque este micro nunca salta
+	"00000010",
+	"01000000",
+	"00000110",
+	"11100011",
+	"10011010",
+	"01000000",
+	"11111110",
+	"10010011",
+	"10000000",
+	"00010000",
+	"00000000",
+	"00100011",
+	"10100101",
+	"10010000",
+	"00000000",
+	"10110011",
+	"10000100",
+	"00100100",
+	"00000000",
+	"00010011",
+	"10010001",
+	"00010000",
+	"00000000",
+	"10000011",
+	"10100100",
+	"10100000",
+	"00000000",
+	"10010011",
+	"00000000",
+	"00000000",
+	"00000000",
+	"00010011",
+	"00000010",
+	"01000000",
+	"00000110"
+	);
 	--Se realiza el proceso de la Rom
 	
 	process(CLK_i,RESET_i)
 		begin
 
-			if RESET_i='1' then
+			if RESET_i='0' then
 				DATA_o<=(others=>'0');
 			elsif(CLK_i'event and CLK_i='1') then
 				DATA_o<=rom((to_integer(unsigned(ADDR_i)))) & rom((to_integer(unsigned(ADDR_i)+1))) & rom((to_integer(unsigned(ADDR_i)+2))) & rom((to_integer(unsigned(ADDR_i)+3)));-- & rom((to_integer(unsigned(ADDR_i)+3)));
