@@ -2,16 +2,16 @@
 -- Alumnos: Suarez Facundo-Parisi Pablo
 --
 -- Fecha:   16:04:51 06/04/2018
--- Nombre del dise√±o: Memoria de Programa   
+-- Nombre del diseÒo: Memoria de Programa   
 
 -- Nombre del proyecto:  Memoria_Programa
 -- Dispositivo: --  
 -- Herramienta utilizada: Quartus Prime Lite Edition,ISE Xilinx , GHDL
 -- Version usada de herramienta:  
--- Descripcion: El objetivo de dicha unidad es proporcionar la instrucci√≥n que debe ejecutarse a trav√©s de una Memoria
---		que contiene el programa almacenado sobre un arreglo de 2**10 palabras de 1 byte. Al realizar un cambio de la instrucci√≥n
---		se proporcionan los valores de las 4 palabras de 1 byte, a trav√©s de la concatenaci√≥n, para determinar la instrucci√≥n de 
---		32 palabras que ser√° repartida sobre el Datapath.
+-- Descripcion: El objetivo de dicha unidad es proporcionar la instrucciÛn que debe ejecutarse a travÈs de una Memoria
+--		que contiene el programa almacenado sobre un arreglo de 2**10 palabras de 1 byte. Al realizar un cambio de la instrucciÛn
+--		se proporcionan los valores de las 4 palabras de 1 byte, a travÈs de la concatenaciÛn, para determinar la instrucciÛn de 
+--		32 palabras que ser· repartida sobre el Datapath.
 --				  
 -- 
 --Entradas Genericas: 
@@ -20,11 +20,11 @@
 --
 --
 --Entradas:			
---					* CLK_i: Se√±al de sincronismo.
---					* RESET_i: Se√±al de reinicializacion.
---					* ADDR_i: Indica la direcci√≥n donde se determina la direcci√≥n de la pr√≥xima instrucci√≥n que se ejecuta.
+--					* CLK_i: SeÒal de sincronismo.
+--					* RESET_i: SeÒal de reinicializacion.
+--					* ADDR_i: Indica la direcciÛn donde se determina la direcciÛn de la prÛxima instrucciÛn que se ejecuta.
 --Salidas:					
---					* DATA_o: Instrucci√≥n que ejecuta el procesador.
+--					* DATA_o: InstrucciÛn que ejecuta el procesador.
 --
 -- Dependencias: Librerias ieee, ieee.std_logic_1164, ieee.numeric_std
 --				ieee.math_real, ieee.std_logic_misc, std.textio
@@ -32,13 +32,13 @@
 -- Revision:
 -- Revision 1.00 - Creacion Codigo, simulacion con testbench.
 -- Comentarios adicionales:
---		Descripci√≥n de Funci√≥n "Ini_rom_file":
+--		DescripciÛn de FunciÛn "Ini_rom_file":
 --				Puede decirse que ejecutan tres pasos: En primer lugar se lee una linea de texto desde un archivo
---				a continuaci√≥n se efect√∫a la lectura de la linea,en forma de un vector de bits.
---				Por √∫ltimo, se lo convierte en un dato del tipo STD_LOGIC_VECTOR.
+--				a continuaciÛn se efect˙a la lectura de la linea,en forma de un vector de bits.
+--				Por ˙ltimo, se lo convierte en un dato del tipo STD_LOGIC_VECTOR.
 -- Notas: 
---		Es posible utilizar el paquete *IEEE.std_logic_textio* en lugar de todas las dem√°s.
---		Dicho planteamiento se deja documentado para una posible futura mejora de la descripci√≥n del hardware.
+--		Es posible utilizar el paquete *IEEE.std_logic_textio* en lugar de todas las dem·s.
+--		Dicho planteamiento se deja documentado para una posible futura mejora de la descripciÛn del hardware.
 --
 --Fuentes utilizadas: 
 -- Enlace web: https://ceworkbench.wordpress.com/2014/05/11/initializing-an-fpga-rom-from-a-text-file/
@@ -70,35 +70,55 @@ end Memoria_Programa;
 --Arquitectura
 architecture Mem_Prog of Memoria_Programa is
 	
-	--Declaraci√≥n de tipo arreglo de standar logic vector
+	--DeclaraciÛn de tipo arreglo de standar logic vector
 	
 	type rom_arreglo is array (2**ancho_address-1 downto 0) of std_logic_vector (ancho_inst-1 downto 0);
+	type codigo is array (31 downto 0) of std_logic_vector(7 downto 0);
 	
+	signal rom: rom_arreglo;
+	CONSTANT cod_maq : codigo := (
+	"00000110", 
+	"01000000",
+	"00000010", 
+	"00010011", 
+	"00000000", 
+	"00000000", 
+	"00000000", 
+	"10010011", 
+	"00000000", 
+	"10100000", 
+	"10100100", 
+	"10000011", 
+	"00000000", 
+	"00010000",
+	"10010001", 
+	"00010011", 
+	"00000000", 
+	"00100100", 
+	"10000100", 
+	"10110011", 
+	"00000000", 
+	"10010000", 
+	"10100101", 
+	"00100011", 
+	"00000000", 
+	"00010000", 
+	"10000000", 
+	"10010011", 
+	"11111110", 
+	"01000000", 
+	"11000110", 
+	"11100011",
+	);
 
-
-	--Funci√≥n para lectura de archivo e inicializaci√≥n de ROM	
-	impure function Ini_rom_file (file_name : string) return rom_arreglo is
-		file rom_file:			text open read_mode is file_name;
-		variable	rom_line:	line;
-		variable	rom_value:	bit_vector(ancho_inst-1 downto 0);
-		variable	temp:			rom_arreglo;
-	begin
-		for rom_index in 0 to 2**ancho_address-1 loop
-			readline(rom_file,rom_line);
-			read(rom_line,rom_value);
-			temp(rom_index):=	to_stdlogicvector(rom_value);
-		end loop;
-		return temp;
-	end function;
-	
-	
 	
 	--Se crea constante con valor de rom
-	constant rom: rom_arreglo	:=Ini_rom_file("Valores_ROM.txt");
+	--constant rom: rom_arreglo	:=Ini_rom_file("Valores_ROM.txt");
+	
 	
 	--Se comienza la arquitectura
 	begin
-	
+	rom(0 to 31)<=cod_maq;
 	--Se realiza el proceso de la Rom
 	
 	process(CLK_i,RESET_i)
