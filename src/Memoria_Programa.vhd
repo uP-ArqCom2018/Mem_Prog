@@ -72,7 +72,7 @@ architecture Mem_Prog of Memoria_Programa is
 	
 	--Declaraci�n de tipo arreglo de standar logic vector
 	
-	type rom_arreglo is array (2**ancho_address-1 downto 0) of std_logic_vector (ancho_inst-1 downto 0);
+	type rom_arreglo is array (2**6-1 downto 0) of std_logic_vector (ancho_inst-1 downto 0);
 	
 	signal rom: rom_arreglo;
 
